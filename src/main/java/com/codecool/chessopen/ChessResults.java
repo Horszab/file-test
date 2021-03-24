@@ -8,7 +8,7 @@ public class ChessResults {
     public List<String> getCompetitorsNamesFromFile(String fileName){
         List<String> list = new ArrayList<>();
         List<Integer> results = new ArrayList<>();
-        HashMap<String, Integer> inventory = new HashMap<>();
+        HashMap<String, Integer> competitorMap = new HashMap<>();
 
         try {
             Scanner scanner = new Scanner(new File(fileName));
@@ -28,12 +28,12 @@ public class ChessResults {
                 for (Integer result : results) {
                     avg = avg + result;
                 }
-                avg = avg / 3;
-                inventory.put(name, avg);
+                avg = avg / results.size();
+                competitorMap.put(name, avg);
                 results.clear();
             }
-            inventory = sortByValue(inventory);
-            Set<String> set = inventory.keySet();
+            competitorMap = sortByValue(competitorMap);
+            Set<String> set = competitorMap.keySet();
             for (int i = 0; i < set.size(); i++) {
                 list = List.copyOf(set);
             }
